@@ -1,0 +1,65 @@
+﻿@model DBTableModelGenerator.Models.TableViewModel
+@{
+    ViewBag.Title = "Home Page";
+}
+@using (Html.BeginForm("Query", "Home", FormMethod.Post))
+{
+    <br />
+    <div class="form-group row">
+        <div class="col-sm-12">
+            <label class="control-label">
+                Connection String
+            </label>
+            @Html.TextBoxFor(x => x.ConnectionString, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-sm-2">
+            <label class="control-label">
+                Schema
+            </label>
+            @Html.TextBoxFor(x => x.Schema, new { @class = "form-control" })
+        </div>
+        <div class="col-sm-2">
+            <label class="control-label">
+                Table Name
+            </label>
+            @Html.TextBoxFor(x => x.TableName, new { @class = "form-control" })
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <hr />
+    <div class="form-group row">
+        <ul class="nav nav-tabs">
+            <li class="active">
+                <a href="#divDBModel" data-toggle="tab">DBModel</a>
+            </li>
+            <li>
+                <a href="#divViewModel" data-toggle="tab">ViewModel</a>
+            </li>
+            <li>
+                <a href="#divRepository" data-toggle="tab">Repository</a>
+            </li>
+
+
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="divDBModel">
+                <textarea class="form-control" rows="15">@Model.DBModel</textarea>
+            </div>
+            <div class="tab-pane" id="divViewModel">
+                <textarea class="form-control" rows="15">@Model.ViewModel</textarea>
+            </div>
+            <div class="tab-pane" id="divRepository">
+                <label class="control-label">INSERT</label>
+                <textarea class="form-control" rows="4">@Model.SQL_INSERT</textarea>
+                <label class="control-label">UPDATE</label>
+                <textarea class="form-control" rows="4">@Model.SQL_UPDATE</textarea>
+                <label class="control-label">DELETE</label>
+                <textarea class="form-control" rows="4">@Model.SQL_DELETE</textarea>
+            </div>
+
+        </div>
+    </div>
+}
